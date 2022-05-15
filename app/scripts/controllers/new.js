@@ -98,6 +98,7 @@
             taskType: 'urls',
             urls: '',
             uploadFile: null,
+            uploadBittorrentInfo: null,
             availableOptions: (function () {
                 var keys = aria2SettingService.getNewTaskOptionKeys();
 
@@ -170,9 +171,19 @@
                 fileFilter: '.torrent',
                 fileType: 'binary'
             }, function (result) {
+                var bittorrentInfo = null;
+
+                try {
+                    bittorrentInfo = angular.copy(ariaNgNativeElectronService.parseBittorrentInfo(result.base64Content));
+                    ariaNgLogService.debug('[NewTaskController.openTorrent] open torrent file ' + (result ? result.fileName : ''), bittorrentInfo);
+                } catch (ex) {
+                    ariaNgLogService.error('[NewTaskController.openTorrent] cannot parse torrent info ' + (result ? result.fileName : ''), ex);
+                }
+
                 $scope.context.uploadFile = result;
+                $scope.context.uploadBittorrentInfo = bittorrentInfo;
+
                 $scope.context.taskType = 'torrent';
-                $scope.changeTab('options');
             }, function (error) {
                 ariaNgLocalizationService.showError(error);
             }, angular.element('#file-holder'));
