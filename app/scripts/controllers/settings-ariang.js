@@ -168,6 +168,10 @@
             }
         };
 
+        $scope.isSupportMessagePush = function () {
+            return ariaNgSettingService.isCurrentRpcUseWebSocket($scope.context.settings.protocol);
+        };
+
         $scope.isSupportNotification = function () {
             return ariaNgNotificationService.isSupportBrowserNotification() &&
                 ariaNgSettingService.isCurrentRpcUseWebSocket($scope.context.settings.protocol);
@@ -206,6 +210,26 @@
                 });
             }
         };
+
+        $scope.setPlaySoundAfterDownloadFinished = function (value) {
+            ariaNgSettingService.setPlaySoundAfterDownloadFinished(value);
+        };
+
+        $scope.browseAndSetPlaySoundAfterDownloadFinished = function () {
+            ariaNgNativeElectronService.showOpenFileDialogAsync([{
+                name: ariaNgLocalizationService.getLocalizedText('Audios'),
+                extensions: ['mp3', 'wav']
+            }], function (result) {
+                if (result && !result.canceled && angular.isArray(result.filePaths) && result.filePaths.length) {
+                    var filePath = result.filePaths[0];
+
+                    $scope.$apply(function () {
+                        $scope.context.settings.playSoundAfterDownloadFinished = filePath;
+                        $scope.setPlaySoundAfterDownloadFinished(filePath);
+                    });
+                }
+            });
+        }
 
         $scope.setTitleRefreshInterval = function (value) {
             setNeedRefreshPage();

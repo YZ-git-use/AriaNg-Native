@@ -380,6 +380,12 @@
             setBrowserNotification: function (value) {
                 setOption('browserNotification', value);
             },
+            getPlaySoundAfterDownloadFinished: function () {
+                return getOption('playSoundAfterDownloadFinished');
+            },
+            setPlaySoundAfterDownloadFinished: function (value) {
+                setOption('playSoundAfterDownloadFinished', value);
+            },
             getTitleRefreshInterval: function () {
                 return getOption('titleRefreshInterval');
             },

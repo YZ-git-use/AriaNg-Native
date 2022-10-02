@@ -10,6 +10,7 @@ const localfs = require('../lib/localfs');
 const bittorrent = require('../lib/bittorrent');
 
 const shell = electron.shell;
+const dialog = electron.dialog;
 const ipcMain = electron.ipcMain;
 
 ipcMain.on('render-sync-get-runtime-environment', (event) => {
@@ -124,4 +125,11 @@ ipcMain.on('render-open-local-directory', (event, dir, filename) => {
 
 ipcMain.on('render-sync-parse-bittorrent-info', (event, data) => {
     event.returnValue = bittorrent.parseBittorrentInfo(data);
+});
+
+ipcMain.handle('render-show-open-file-dialog', (event, filters) => {
+    return dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: filters
+    });
 });

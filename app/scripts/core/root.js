@@ -212,6 +212,12 @@
             angular.element('#native-title-maximize-btn').attr('title', ariaNgLocalizationService.getLocalizedText('Restore Down'));
         };
 
+        var playSoundAfterDownloadFinished = function () {
+            if (ariaNgSettingService.getPlaySoundAfterDownloadFinished()) {
+                ariaNgNativeElectronService.playSound(ariaNgSettingService.getPlaySoundAfterDownloadFinished());
+            }
+        };
+
         $rootScope.currentTheme = 'light';
 
         $rootScope.searchContext = {
@@ -560,14 +566,17 @@
 
         aria2TaskService.onTaskCompleted(function (event) {
             ariaNgLocalizationService.notifyTaskComplete(event.task);
+            playSoundAfterDownloadFinished(event.task);
         });
 
         aria2TaskService.onBtTaskCompleted(function (event) {
             ariaNgLocalizationService.notifyBtTaskComplete(event.task);
+            playSoundAfterDownloadFinished(event.task);
         });
 
         aria2TaskService.onTaskErrorOccur(function (event) {
             ariaNgLocalizationService.notifyTaskError(event.task);
+            playSoundAfterDownloadFinished(event.task);
         });
 
         $rootScope.$on('$locationChangeStart', function (event) {

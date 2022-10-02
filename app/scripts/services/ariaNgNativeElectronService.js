@@ -152,6 +152,22 @@
 
                 return info;
             },
+            showOpenFileDialogAsync: function (filters, callback) {
+                return invokeAsyncMainProcessMethod('render-show-open-file-dialog', filters)
+                    .then(function onReceive(result) {
+                        if (callback) {
+                            callback({
+                                canceled: result.canceled,
+                                filePaths: result.filePaths
+                            });
+                        }
+                    });
+            },
+            playSound: function (soundPath) {
+                if (localfs.isExists(soundPath)) {
+
+                }
+            },
             notifyMainProcessViewLoaded: function (locationPath) {
                 invokeMainProcessMethod('on-render-view-content-loaded', locationPath);
             },

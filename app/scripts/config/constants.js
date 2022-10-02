@@ -27,6 +27,7 @@
         title: '${downspeed}, ${upspeed} - ${title}',
         titleRefreshInterval: 5000,
         browserNotification: false,
+        playSoundAfterDownloadFinished: '',
         rpcAlias: '',
         rpcHost: '',
         rpcPort: '6800',

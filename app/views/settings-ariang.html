@@ -103,6 +103,23 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row" ng-if="isSupportMessagePush()">
+                        <div class="setting-key setting-key-without-desc col-sm-4">
+                            <span translate>Play Sound After Download Finished</span>
+                        </div>
+                        <div class="setting-value col-sm-8">
+                            <div class="input-group">
+                                <input class="form-control" type="text"
+                                       ng-model="context.settings.playSoundAfterDownloadFinished"
+                                       ng-change="setPlaySoundAfterDownloadFinished(context.settings.playSoundAfterDownloadFinished)"/>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="browseAndSetPlaySoundAfterDownloadFinished()">
+                                        <span translate>Browse</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="setting-key setting-key-without-desc col-sm-4">
                             <span translate>Updating Page Title Interval</span>

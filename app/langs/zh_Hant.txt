@@ -8,6 +8,7 @@ OK=確定
 Confirm=確認
 Cancel=取消
 Close=關閉
+Browse=瀏覽
 True=是
 False=否
 Connecting=連線中
@@ -167,6 +168,7 @@ Tips: You can use the "noprefix" tag to ignore the prefix, "nosuffix" tag to ign
 Example: ${downspeed:noprefix:nosuffix:scale\=1}=示例: ${downspeed:noprefix:nosuffix:scale\=1}
 Updating Page Title Interval=頁面標題更新間隔
 Enable Browser Notification=啟用瀏覽器通知
+Play Sound After Download Finished=下載完成後播放音效
 Aria2 RPC Alias=Aria2 RPC 別名
 Aria2 RPC Address=Aria2 RPC 位址
 Aria2 RPC Protocol=Aria2 RPC 協定
